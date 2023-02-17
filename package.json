@@ -1,0 +1,28 @@
+{
+  "name": "method-payment-server",
+  "version": "1.0.0",
+  "description": "server for method payment assessment",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon index.js",
+    "test": "mocha"
+  },
+  "author": "Sandi Gau",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^21.3.0",
+    "@mongoosejs/double": "^0.3.0",
+    "boom": "^7.3.0",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "joi": "^17.7.1",
+    "mongoose": "^6.9.1",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "sinon": "^15.0.1"
+  }
+}
