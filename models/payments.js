@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const Double = require("@mongoosejs/double");
 
 const PaymentSchema = new Schema(
   {
@@ -30,9 +29,10 @@ const PaymentSchema = new Schema(
       PlaidId: String,
       LoanAccountNumber: String,
     },
-    Amount: Double,
-    Status: String,
-    BatchId: String,
+    Amount: Number,
+    status: { type: String, default: "uploaded" },
+    methodPaymentId: String,
+    catchId: String,
   },
   { timestamps: true }
 );
@@ -44,4 +44,4 @@ PaymentSchema.index({
   "Payor.DunkinId": 1,
 });
 
-module.exports = mongoose.model("Payment", PaymentSchema);
+module.exports = mongoose.model("Payments", PaymentSchema);

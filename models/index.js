@@ -1,3 +1,3 @@
-const Batch = require("./batch");
-const Payment = require("./payment");
-module.exports = { Batch, Payment };
+const Batchs = require("./batchs");
+const Payments = require("./payments");
+module.exports = { Batchs, Payments };
