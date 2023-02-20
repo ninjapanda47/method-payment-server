@@ -32,7 +32,7 @@ const PaymentSchema = new Schema(
     Amount: Number,
     status: { type: String, default: "uploaded" },
     methodPaymentId: String,
-    catchId: String,
+    batchId: String,
   },
   { timestamps: true }
 );

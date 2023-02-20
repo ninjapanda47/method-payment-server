@@ -20,4 +20,19 @@ module.exports = [
     path: "/batch",
     handler: handlers.batch.processBatch,
   },
+  {
+    method: "GET",
+    path: "/report/total-account-by-source-account/{batchId}",
+    handler: handlers.report.getTotalPerSourceAccountByBatchId,
+  },
+  {
+    method: "GET",
+    path: "/report/total-account-by-branch/{batchId}",
+    handler: handlers.report.getTotalPerBranchByBatchId,
+  },
+  {
+    method: "GET",
+    path: "/report/payments/{batchId}",
+    handler: handlers.report.getPaymentsByBatchId,
+  },
 ];
