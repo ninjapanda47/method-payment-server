@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const { connectToTestDb } = require("../test/utils/mongoHelper");
 const { mockPayments } = require("../test/utils/reportTestData");
 
-describe("Batch Handler Tests", () => {
+describe("Report Handler Tests", () => {
   let server;
   before(async () => {
     server = await init();
@@ -32,7 +32,7 @@ describe("Batch Handler Tests", () => {
     await Payments.insertMany(mockPayments);
     const response = await server.inject({
       method: "get",
-      url: "/report/total-account-by-source-account/EDCLV2023",
+      url: "/report/total-amount-by-source-account/EDCLV2023",
     });
     expect(response.payload).to.include("BigRoomNeverDies,1500.00");
     expect(response.payload).to.include("AStateOfTrance,1000.00");
@@ -41,7 +41,7 @@ describe("Batch Handler Tests", () => {
     await Payments.insertMany(mockPayments);
     const response = await server.inject({
       method: "get",
-      url: "/report/total-account-by-branch/EDCLV2023",
+      url: "/report/total-amount-by-branch/EDCLV2023",
     });
     expect(response.payload).to.include("1,500.00");
     expect(response.payload).to.include("2,500.00");

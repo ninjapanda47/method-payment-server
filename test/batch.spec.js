@@ -27,7 +27,6 @@ describe("Batch Handler Tests", () => {
     await Payments.deleteMany({});
     await Batchs.deleteMany({});
     await server.stop();
-    await mongoose.disconnect();
     sinon.restore();
   });
 
@@ -111,5 +110,46 @@ describe("Batch Handler Tests", () => {
     expect(payments.length).to.equal(0);
     const updatedBatch = await Batchs.findOne({ batchId: "EDCLV2023" });
     expect(updatedBatch.status).to.equal("cancelled");
+  });
+  it("Get batch list", async () => {
+    await Batchs.create({
+      batchId: "EDCLV2023",
+      uniqueSourceAccounts: [
+        {
+          DunkinId: "AStateOfTrance",
+          ABARouting: "148386123",
+          AccountNumber: "12719660",
+          Name: "Insomniac, LLC",
+          DBA: "EDC",
+          EIN: "EDC",
+          Address: {
+            Line1: "7000 N. Las Vegas Blvd",
+            City: "Las Vegas",
+            State: "NV",
+            Zip: "89115",
+          },
+        },
+        {
+          DunkinId: "BigRoomNeverDies",
+          ABARouting: "148386123",
+          AccountNumber: "12719660",
+          Name: "Insomniac, LLC",
+          DBA: "EDC",
+          EIN: "EDC",
+          Address: {
+            Line1: "7000 N. Las Vegas Blvd",
+            City: "Las Vegas",
+            State: "NV",
+            Zip: "89115",
+          },
+        },
+      ],
+      status: "pending",
+    });
+    const response = await server.inject({
+      method: "get",
+      url: "/batch/list",
+    });
+    expect(response.result.batchList.length).to.equal(1);
   });
 });

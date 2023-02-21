@@ -171,5 +171,15 @@ const discardBatch = async (req, h) => {
   };
 };
 
+const getBatchList = async (req, h) => {
+  // ideally you would pass in a clientId
+  const batchList = await Batchs.find({});
+  return {
+    success: true,
+    batchList,
+  };
+};
+
 exports.processBatch = processBatch;
 exports.discardBatch = discardBatch;
+exports.getBatchList = getBatchList;

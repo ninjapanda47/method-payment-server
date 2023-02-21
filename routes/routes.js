@@ -35,12 +35,17 @@ module.exports = [
   },
   {
     method: "GET",
-    path: "/report/total-account-by-source-account/{batchId}",
+    path: "/batch/list",
+    handler: handlers.batch.getBatchList,
+  },
+  {
+    method: "GET",
+    path: "/report/total-amount-by-source-account/{batchId}",
     handler: handlers.report.getTotalPerSourceAccountByBatchId,
   },
   {
     method: "GET",
-    path: "/report/total-account-by-branch/{batchId}",
+    path: "/report/total-amount-by-branch/{batchId}",
     handler: handlers.report.getTotalPerBranchByBatchId,
   },
   {

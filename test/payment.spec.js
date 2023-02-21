@@ -26,7 +26,6 @@ describe("Payments Handler Tests", () => {
     await Payments.deleteMany({});
     await Batchs.deleteMany({});
     await server.stop();
-    await mongoose.disconnect();
     sinon.restore();
   });
 

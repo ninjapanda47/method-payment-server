@@ -26,7 +26,7 @@ const getTotalPerSourceAccountByBatchId = async (req, h) => {
     .header("Cache-Control", "no-cache")
     .header(
       "Content-Disposition",
-      `attachment;filename=TotalPerSourceAccountByBatchId${new Date().toString()}.csv`
+      `attachment;filename=TotalPerSourceAccountByBatchId-${batchId}-${new Date().toDateString()}.csv`
     );
 };
 // Total amount of funds paid out per Dunkin branch.
@@ -55,7 +55,7 @@ const getTotalPerBranchByBatchId = async (req, h) => {
     .header("Cache-Control", "no-cache")
     .header(
       "Content-Disposition",
-      `attachment;filename=TotalPerBranchByBatchId${new Date().toString()}.csv`
+      `attachment;filename=TotalPerBranchByBatchId-${batchId}-${new Date().toDateString()}.csv`
     );
 };
 
@@ -81,7 +81,7 @@ const getPaymentsByBatchId = async (req, h) => {
     .header("Cache-Control", "no-cache")
     .header(
       "Content-Disposition",
-      `attachment;filename=PaymentsBatchId${new Date().toString()}.csv`
+      `attachment;filename=PaymentsBatchId-${batchId}-${new Date().toDateString()}.csv`
     );
 };
 
