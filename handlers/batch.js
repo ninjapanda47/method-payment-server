@@ -173,7 +173,7 @@ const discardBatch = async (req, h) => {
 
 const getBatchList = async (req, h) => {
   // ideally you would pass in a clientId
-  const batchList = await Batchs.find({});
+  const batchList = await Batchs.find({ status: "processed" });
   return {
     success: true,
     batchList,

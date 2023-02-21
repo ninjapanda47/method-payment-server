@@ -144,7 +144,7 @@ describe("Batch Handler Tests", () => {
           },
         },
       ],
-      status: "pending",
+      status: "processed",
     });
     const response = await server.inject({
       method: "get",
