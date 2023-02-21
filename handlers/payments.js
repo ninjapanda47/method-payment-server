@@ -33,6 +33,7 @@ const insertPayments = async (req, h) => {
     let batch = new Batchs({
       batchId: req.payload.batchId,
       uniqueSourceAccounts,
+      status: "pending",
     });
     const newBatch = await batch.save();
     const savedPayments = await Payments.insertMany(validatedPayments);
@@ -47,7 +48,5 @@ const insertPayments = async (req, h) => {
     throw boom.badRequest(error);
   }
 };
-
-const getPaymentsByBatch = async (req, h) => {};
 
 exports.insertPayments = insertPayments;

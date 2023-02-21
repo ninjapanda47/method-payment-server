@@ -29,6 +29,11 @@ module.exports = [
     handler: handlers.batch.processBatch,
   },
   {
+    method: "PUT",
+    path: "/batch/{batchId}",
+    handler: handlers.batch.discardBatch,
+  },
+  {
     method: "GET",
     path: "/report/total-account-by-source-account/{batchId}",
     handler: handlers.report.getTotalPerSourceAccountByBatchId,

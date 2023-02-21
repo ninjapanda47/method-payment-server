@@ -153,10 +153,23 @@ const processBatch = async (req, h) => {
       }
     }
   }
+
+  await Batchs.updateOne({ _id: batch._id }, { status: "processed" });
   return {
     success: true,
     paymentProcessedCount: count,
   };
 };
 
+const discardBatch = async (req, h) => {
+  const batchId = req.params.batchId;
+  const { deletedCount } = await Payments.deleteMany({ batchId });
+  await Batchs.updateOne({ batchId }, { status: "cancelled" });
+  return {
+    success: true,
+    deletedCount,
+  };
+};
+
 exports.processBatch = processBatch;
+exports.discardBatch = discardBatch;
