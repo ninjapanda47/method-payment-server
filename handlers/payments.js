@@ -7,7 +7,7 @@ const { parseString } = require("xml2js");
 
 const insertPayments = async (req, h) => {
   let convertedResult;
-  const data = await fs.promises.readFile(req.payload.file);
+  const data = await fs.promises.readFile(req.payload.file.path);
   parseString(data, { explicitArray: false }, function (err, result) {
     convertedResult = result;
   });

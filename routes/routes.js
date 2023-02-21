@@ -14,6 +14,14 @@ module.exports = [
     method: "POST",
     path: "/payments/upload",
     handler: handlers.payments.insertPayments,
+    options: {
+      payload: {
+        maxBytes: 209715200,
+        output: "file",
+        parse: true,
+        multipart: true,
+      },
+    },
   },
   {
     method: "POST",

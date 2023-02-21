@@ -5,6 +5,9 @@ const { init } = require("../server");
 const { Payments, Batchs } = require("../models");
 const mongoose = require("mongoose");
 const { connectToTestDb } = require("../test/utils/mongoHelper");
+const fs = require("fs");
+const FormData = require("form-data");
+const GetStream = require("get-stream");
 
 describe("Payments Handler Tests", () => {
   let server;
@@ -29,11 +32,17 @@ describe("Payments Handler Tests", () => {
 
   it("Converts XML into Json saves to DB and create batch", async () => {
     const path = __dirname + "/testData.xml";
+    const formData = new FormData();
+    formData.append("file", fs.createReadStream(path));
+    formData.append("batchId", "illenium");
+    const payload = await GetStream(formData);
     const res = await server.inject({
       method: "post",
       url: "/payments/upload",
-      payload: { file: path, batchId: "illenium" },
+      headers: formData.getHeaders(),
+      payload,
     });
+
     const insertedPayments = await Payments.find({});
     const newBatch = await Batchs.findOne({ batchId: "illenium" }).lean();
     expect(newBatch.uniqueSourceAccounts.length).to.equal(2);
